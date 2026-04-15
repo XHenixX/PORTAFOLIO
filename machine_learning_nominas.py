@@ -388,15 +388,15 @@ columnas_caracteristicas = [
 X = df_total[columnas_caracteristicas]
 y = df_total["ingreso"]
 
-print(f"\n✅ Características de entrada: {len(X.columns)}")
+print(f"\n Características de entrada: {len(X.columns)}")
 for col in X.columns:
     dtype = X[col].dtype
     tipo = "categórica" if dtype == 'object' else "entero" if dtype in ['int64', 'int32'] else "decimal"
     print(f"   - {col}: {tipo}")
-print(f"\n✅ Etiqueta de salida: ingreso (tipo real)")
+print(f"\n Etiqueta de salida: ingreso (tipo real)")
 
 # Verificar que no hay valores nulos en las nuevas columnas
-print(f"\n✅ Verificación de nulos:")
+print(f"\n Verificación de nulos:")
 print(f"   nivel_jerarquico: {df_total['nivel_jerarquico'].isnull().sum()} nulos")
 print(f"   tipo_departamento: {df_total['tipo_departamento'].isnull().sum()} nulos")
 
@@ -577,7 +577,7 @@ X_train_scaled = scaler.fit_transform(X_train)
 modelo = RandomForestRegressor(n_estimators=100, random_state=42)
 modelo.fit(X_train_scaled, y_train)
 
-print("✅ Modelo entrenado con éxito!\n")
+print(" Modelo entrenado con éxito!\n")
 
 # ============================================================
 # FUNCIÓN CORREGIDA - MANTIENE EL MISMO ORDEN DE COLUMNAS
@@ -602,7 +602,7 @@ def predecir_nuevo(csv_path):
             lambda x: le.transform([x])[0] if x in le.classes_ else -1
         )
 
-    # 🔴 CLAVE: Usar EXACTAMENTE el mismo orden de columnas que en entrenamiento
+    #  CLAVE: Usar EXACTAMENTE el mismo orden de columnas que en entrenamiento
     # Esto asegura que las columnas estén en el orden correcto
     X_nuevo = nuevo[feature_cols]  # Mismo orden que en entrenamiento
 
@@ -640,7 +640,7 @@ print("\n✅ Archivo de ejemplo creado: 'empleados_nuevos.csv'")
 print("\n📋 Contenido del archivo:")
 print(csv_ejemplo)
 
-# 🔴 LLAMAR A LA FUNCIÓN
+# LLAMAR A LA FUNCIÓN
 resultados = predecir_nuevo('empleados_nuevos.csv')
 
 # ============================================================
@@ -653,13 +653,13 @@ print("=" * 60)
 print("\n📋 Tabla completa:")
 print(resultados.to_string(index=False))
 
-print("\n📊 Resumen por empleado:")
+print("\n Resumen por empleado:")
 print("-" * 70)
 for i, row in resultados.iterrows():
     print(f"{row['cargo']:12s} | {row['departamento']:15s} | {row['institucion']:8s} | {row['ingreso_formateado']}")
 
 # Estadísticas
-print("\n📈 ESTADÍSTICAS:")
+print("\n ESTADÍSTICAS:")
 print(f"   Total predicciones: {len(resultados)}")
 print(f"   Ingreso promedio: RD$ {resultados['ingreso_predicho'].mean():,.2f}")
 print(f"   Ingreso mínimo: RD$ {resultados['ingreso_predicho'].min():,.2f}")
@@ -677,7 +677,7 @@ print("=" * 60)
 # CÓMO USAR CON TU PROPIO CSV
 # ============================================================
 print("\n" + "=" * 60)
-print("💡 CÓMO USAR CON TU PROPIO CSV")
+print(" CÓMO USAR CON TU PROPIO CSV")
 print("=" * 60)
 print("""
 1. Tu archivo CSV debe tener estas columnas:
